@@ -1,0 +1,17 @@
+
+<h2>List of purchases: </h2>
+<div>
+
+  <input #newPurchase type="text"/>
+  <button (click)="addPurchase(newPurchase.value); newPurchase.value = '';">Add new Item</button>
+
+</div>
+<div>
+  <ul>
+    <li *ngFor="let purchase of purchases">
+        <span (click)="(purchase.isBought) ? '' : boughtPurchase(purchase)" [ngClass]="(purchase.isBought) ? 'done' : 'new'">{{ purchase.name }}</span>
+    </li>
+  </ul>
+</div>
+
+
