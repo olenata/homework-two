@@ -1,0 +1,11 @@
+<div>
+<h1> New Item </h1>
+  <div><label>Name: </label><input #newPurchase type="text"/></div>
+  <div><label>Description: </label><textarea #newDescription rows="10" cols="45" name="text"></textarea></div>
+  <button (click)="addPurchase(newPurchase.value, newDescription.value); newPurchase.value = ''; newDescription.value = '';">Add new Item</button>
+
+</div>
+
+<div style="margin-top: 20px">
+    <button (click)="goBack();">Back</button>
+<div>

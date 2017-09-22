@@ -1,0 +1,21 @@
+<div *ngIf="purchase">
+  <h2>{{purchase.name}} details!</h2>
+  <div>
+    <label>id: </label>{{purchase.id}}
+</div>
+  <div>
+    <label>Name: </label>
+    {{purchase.name}}
+  </div>
+  <div>
+    <label>Description: </label>
+    {{purchase.description}}
+  </div>
+  <div>
+      <button (click)="boughtPurchase(purchase);">Done</button>
+  <div>
+</div>
+
+<div style="margin-top: 20px">
+    <button (click)="goBack();">Back</button>
+<div>
