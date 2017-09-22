@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { PurchasesComponent } from './purchases.component';
-
+import { PurchasesService } from './app.service';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { PurchasesComponent } from './purchases.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [PurchasesService],
   bootstrap: [PurchasesComponent]
 })
 export class AppModule { }

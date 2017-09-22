@@ -1,42 +1,42 @@
-import {Component, NgModule} from '@angular/core'
+import {Component, NgModule, OnInit} from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser'
+import {BrowserModule} from '@angular/platform-browser';
 import { Purchase } from './app.purchase';
+import { PurchasesService } from './app.service';
 
 @Component({
   selector: 'purchases',
   templateUrl: './purchases.component.html',
-  styleUrls: ['./purchases.component.css']
+  styleUrls: ['./purchases.component.css'],
+  providers: [PurchasesService]
 })
 export class PurchasesComponent {
-  purchases = [
-      new Purchase("Bananas", false),
-      new Purchase("Lemons", true),
-      new Purchase("Water", false),
-      new Purchase("Juice", false)
-      ];
+   purchases = [];
+   constructor(private appService: PurchasesService) { }  
 
-  newPurchase: string;
+   ngOnInit(): void { 
+      this.getPurchases(); 
+   } 
 
-  addPurchase(newPurchase: string) {
-    if (newPurchase) {
-      this.purchases.push(new Purchase(newPurchase, false));
-      newPurchase = '';
-     }
+   getPurchases(): void {
+    this.purchases = this.appService.getPurchases();
   }
 
-  boughtPurchase(currentPurchase: Purchase) {
-    currentPurchase.isBought = true;
+  boughtPurchase(currentPurchase: Purchase): void {
+    this.appService.boughtPurchase(currentPurchase);
   }
 
+  addPurchase(newPurchase: string): void {
+    this.appService.addPurchase(newPurchase);
+  }
 }
 
 @NgModule({
   imports: [ BrowserModule,FormsModule ],
   declarations: [ PurchasesComponent ],
-  bootstrap: [ PurchasesComponent ]
-})
-
+  bootstrap: [ PurchasesComponent ],
+  providers: [PurchasesService]
+  })
 export class PurchasesModule {
   
 }
